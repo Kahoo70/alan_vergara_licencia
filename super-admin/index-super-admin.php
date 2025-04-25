@@ -234,15 +234,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_personaje'])) 
     </div>
 
     <div class="container">
-        <!-- Tabla de personajes -->
+        <!-- Barra de búsqueda -->
         <h2>Personajes</h2>
-        <table>
+        <input type="text" id="search-bar" placeholder="Buscar por nombre o código..." style="width: 100%; padding: 10px; margin-bottom: 20px; border-radius: 5px; border: 1px solid rgba(255, 255, 255, 0.2);">
+
+        <!-- Tabla de personajes -->
+        <table id="personajes-table">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Fuerza</th>
-                    <th>Código</th> <!-- Nueva columna -->
+                    <th>Código</th>
                     <th>Foto</th>
                     <th>Creado Por</th>
                     <th>Fecha de Creación</th>
@@ -255,10 +258,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_personaje'])) 
                         <td><?= htmlspecialchars($personaje['id_personaje']) ?></td>
                         <td><?= htmlspecialchars($personaje['nom_personaje']) ?></td>
                         <td><?= htmlspecialchars($personaje['fuerza']) ?></td>
-                        <td>
-                            <img src="https://barcode.tec-it.com/barcode.ashx?data=<?= urlencode($personaje['codigo'])?>&code=Code128&dpi=96" alt="codigo">
-                            <br>
-                            <?= htmlspecialchars($personaje['codigo']) ?></td> <!-- Mostrar el código -->
+                        <td><?= htmlspecialchars($personaje['codigo']) ?></td>
                         <td>
                             <div class="image-container">
                                 <img src="../<?= htmlspecialchars($personaje['foto']) ?>" 
@@ -275,43 +275,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_personaje'])) 
                 <?php endforeach; ?>
             </tbody>
         </table>
-
-        <!-- Formulario para realizar rentas -->
-        <!-- <div class="form-container">
-            <h2>Realizar Renta</h2>
-            <form action="realizar_renta.php" method="POST">
-                <input type="text" name="id_personaje" placeholder="ID del Personaje" required>
-                <input type="text" name="id_usuario" placeholder="ID del Usuario" required>
-                <input type="date" name="fecha_renta" placeholder="Fecha de Renta" required>
-                <button type="submit">Realizar Renta</button>
-            </form>
-        </div> -->
-
-        <!-- Tabla de rentas (oculta inicialmente) -->
-        <!-- <div id="rentas-container" style="display: none;">
-            <h2>Rentas</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID Renta</th>
-                        <th>ID Usuario</th>
-                        <th>ID Personaje</th>
-                        <th>Fecha de Renta</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($rentas as $renta): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($renta['id_renta']) ?></td>
-                            <td><?= htmlspecialchars($renta['id_usuario']) ?></td>
-                            <td><?= htmlspecialchars($renta['id_personaje']) ?></td>
-                            <td><?= htmlspecialchars($renta['fecha_renta']) ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    </div> -->
+    </div>
 
     <!-- Modal para editar personaje -->
     <div id="editar-personaje-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0, 0, 0, 0.9); padding: 20px; border-radius: 10px; width: 400px; z-index: 1000;">
@@ -368,6 +332,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_personaje'])) 
                 window.location.href = 'index-super-admin.php?eliminar=' + id;
             }
         }
+
+        // Filtrar personajes en tiempo real
+        document.getElementById('search-bar').addEventListener('input', function () {
+            const filter = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#personajes-table tbody tr');
+
+            rows.forEach(row => {
+                const nombre = row.cells[1].textContent.toLowerCase();
+                const codigo = row.cells[3].textContent.toLowerCase();
+
+                if (nombre.includes(filter) || codigo.includes(filter)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
 </html>

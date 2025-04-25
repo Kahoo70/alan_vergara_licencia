@@ -35,11 +35,10 @@ Este proyecto es un sistema de gestión para personajes y rentas, desarrollado e
   2. Vista de Crear Empresa:
      - URL: `/super-admin/crear-empresa.php`
      - Descripción: Permite registrar una nueva empresa en el sistema, incluyendo su información básica.
-
+     
   3. Vista de Crear Licencia:
      - URL: `/super-admin/crear-licencia.php`
      - Descripción: Permite registrar una nueva licencia en el sistema, asociada a un personaje o usuario.
-     
   4. Vista de Crear Administrador:
      - URL: `/super-admin/crear-admin.php`
      - Descripción: Permite registrar un nuevo administrador en el sistema, asignándole credenciales de acceso.
