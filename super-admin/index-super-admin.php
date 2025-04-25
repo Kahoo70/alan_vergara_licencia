@@ -246,6 +246,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_personaje'])) 
                     <th>Nombre</th>
                     <th>Fuerza</th>
                     <th>Código</th>
+                    <th>Código de Barras</th>
                     <th>Foto</th>
                     <th>Creado Por</th>
                     <th>Fecha de Creación</th>
@@ -259,6 +260,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_personaje'])) 
                         <td><?= htmlspecialchars($personaje['nom_personaje']) ?></td>
                         <td><?= htmlspecialchars($personaje['fuerza']) ?></td>
                         <td><?= htmlspecialchars($personaje['codigo']) ?></td>
+                        <td>
+                            <img src="https://barcode.tec-it.com/barcode.ashx?data=<?= urlencode($personaje['codigo']) ?>&code=Code128&dpi=96" alt="codigo">
+                        </td>
                         <td>
                             <div class="image-container">
                                 <img src="../<?= htmlspecialchars($personaje['foto']) ?>" 
