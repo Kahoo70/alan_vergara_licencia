@@ -1,0 +1,45 @@
+# Dead Ahead - Sistema de Gestión de Rentas de Personajes Basado en el Juego Zombie Dead-Ahead Warfare
+
+Este proyecto es un sistema de gestión para personajes y rentas, desarrollado en PHP con conexión a una base de datos MySQL.
+
+## Características
+- Gestión de personajes (crear, editar, eliminar).
+- Generación de códigos de barras para los personajes.
+- Gestión de rentas.
+- Roles de usuario: Superadministrador y Administrador.
+
+## Requisitos
+- XAMPP
+- PHP 
+- MySQL
+
+## Instalación
+1. Clona este repositorio en el servidor local:
+   ```bash
+   git clone https://github.com/Kahoo70/alan_vergara_licencia.git
+
+## Credenciales 
+- Super Admin
+    documento : 1104943524
+    contraseña : 1234
+- Admin
+    documento : 1111
+    contraseña : 1111
+
+## Recomendaciones
+- El Administrador no tiene acceso directo a algunos botones para ciertas vistas. Sin embargo, puede acceder a estas vistas escribiendo manualmente las siguientes URLs en el navegador:
+  1. Vista de Crear Adquisición:
+     - URL: `/super-admin/crear-adquisicion.php`
+     - Descripción: Permite registrar una nueva adquisición en el sistema, asociada a un personaje o usuario.
+
+  2. Vista de Crear Empresa:
+     - URL: `/super-admin/crear-empresa.php`
+     - Descripción: Permite registrar una nueva empresa en el sistema, incluyendo su información básica.
+
+  3. Vista de Crear Licencia:
+     - URL: `/super-admin/crear-licencia.php`
+     - Descripción: Permite registrar una nueva licencia en el sistema, asociada a un personaje o usuario.
+     
+  4. Vista de Crear Administrador:
+     - URL: `/super-admin/crear-admin.php`
+     - Descripción: Permite registrar un nuevo administrador en el sistema, asignándole credenciales de acceso.
